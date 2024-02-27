@@ -128,7 +128,7 @@ P = {
 ```
 ## OUTPUT:
 
-![Screenshot 2024-02-23 095539](https://github.com/SivaChandranR07/mdp-representation/assets/113497395/f88ad48e-55a9-4d42-b203-639826c47ddf)
+![image](https://github.com/SivaChandranR07/mdp-representation/assets/113497395/a63eaffe-361b-41af-9f4d-764f56e9c97a)
 
 ## RESULT:
 
