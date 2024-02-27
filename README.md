@@ -68,54 +68,63 @@ Additional rewards for passenger comfort and satisfaction.
 
 ## PYTHON REPRESENTATION:
 ```
-import numpy as np
-import gym
+P = {
+    0 : {
+        0 : [(1.0, 0, 0.0, False)],
+        1 : [(1.0, 1, 0.0, False)],
+        2 : [(1.0, 2, 0.0, False)],
+        3 : [(1.0, 0, 0.0, False)]
+    },
 
-# Set up the environment
-env = gym.make("Taxi-v3")
+    1 : {
+        0 : [(1.0, 1, 0.0, False)],
+        1 : [(1.0, 1, 0.0, False)],
+        2 : [(0.8, 3, 0.0, False), (0.2, 1, 0.0, False)],
+        3 : [(0.8, 0, 0.0, False), (0.2, 1, 0.0, False)]
+    },
 
-# Define the Q-table
-q_table = np.zeros([env.observation_space.n, env.action_space.n])
+    2 : {
+        0 : [(0.8, 0, 0.0, False), (0.2, 2, 0.0, False)],
+        1 : [(0.8, 3, 0.0, False), (0.2, 2, 0.0, False)],
+        2 : [(1.0, 2, 0.0, False)],
+        3 : [(1.0, 2, 0.0, False)]
+    },
 
-# Define the hyperparameters
-alpha = 0.1
-gamma = 0.99
-epsilon = 0.1
-num_episodes = 10000
+    3 : {
+        0 : [(0.8, 1, 0.0, False), (0.2, 3, 0.0, False)],
+        1 : [(1.0, 3, 0.0, False)],
+        2 : [(0.8, 4, 0.0, False), (0.2, 3, 0.0, False)],
+        3 : [(0.8, 2, 0.0, False), (0.2, 3, 0.0, False)]
+    },
 
-# Q-learning algorithm
-for episode in range(num_episodes):
-    state = env.reset()
-    done = False
-    while not done:
-        # Choose an action based on epsilon-greedy policy
-        if np.random.rand() < epsilon:
-            action = env.action_space.sample()
-        else:
-            action = np.argmax(q_table[state])
+    4 : {
+        0 : [(0.8, 3, 0.0, False), (0.2, 4, 0.0, False)],
+        1 : [(0.8, 5, 0.0, False), (0.2, 4, 0.0, False)],
+        2 : [(0.8, 6, 0.0, False), (0.2, 4, 0.0, False)],
+        3 : [(1.0, 4, 0.0, False)]
+    },
 
-        # Take the action and observe the next state, reward, and done flag
-        next_state, reward, done, _ = env.step(action)
+    5 : {
+        0 : [(1.0, 5, 0.0, False)],
+        1 : [(1.0, 5, 0.0, False)],
+        2 : [(0.8, 7, 1.0, True), (0.2, 5, 0.0, False)],
+        3 : [(0.8, 4, 0.0, False), (0.2, 5, 0.0, False)]
+    },
 
-        # Update the Q-table
-        q_table[state, action] += alpha * (reward + gamma * np.max(q_table[next_state]) - q_table[state, action])
+    6 : {
+        0 : [(0.8, 4, 0.0, False), (0.2, 6, 0.0, False)],
+        1 : [(0.8, 7, 1.0, True), (0.2, 6, 0.0, False)],
+        2 : [(1.0, 6, 0.0, False)],
+        3 : [(1.0, 6, 0.0, False)]
+    },
 
-        # Move to the next state
-        state = next_state
-
-# Print the optimal Q-values
-print("Optimal Q-values:")
-print(q_table)
-
-# Test the learned policy
-env.render()
-state = env.reset()
-done = False
-while not done:
-    action = np.argmax(q_table[state])
-    next_state, reward, done, _ = env.step(action)
-    env.render()
-    state = next_state
+    7 : {
+        0 : [(1.0, 7, 0.0, True)],
+        1 : [(1.0, 7, 0.0, True)],
+        2 : [(1.0, 7, 0.0, True)],
+        3 : [(1.0, 7, 0.0, True)]
+    }
+}
 ```
 ## OUTPUT:
 
